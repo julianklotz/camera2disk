@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+#
+# vim: set filetype=sh textwidth=80:
+#
+# Copyright (c) 2011, 2012 Julian Klotz post@julianklotz.de
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+# 
+# Redistributions of source code must retain the above copyright notice, this list
+# of conditions and the following disclaimer.
+# Redistributions in binary form must reproduce the above copyright notice, this
+# list of conditions and the following disclaimer in the documentation and/or
+# other materials provided with the distribution.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+##############################################
+# Configuration; adjust the lines according to your needs
+##############################################
+
+# The directory from which you want to copy files. Normally the place to where
+# your system mounts your camera. Please note: needs to be double quoted,
+# whitespaces escaped.
+SOURCE_PATH="~/path/to/camera"
+
+# The folder in which you keep your photos. Please note: needs to be double
+# quoted, whitespaces escaped.
+TARGET_PATH="/Users/julianklotz/Pictures"
+
+# Anytime you copy new pictures from your camera, this script creates a folder
+# inside your TARGET_PATH according to the following pattern
+FOLDER_NAME=$(date "+%y%m%d_${1}")
+
+# This will be prepended to every image that is copied to TARGET_PATH/FOLDER_NAME
+FILE_PREFIX=$(date "+%y%m%d")
+
+# Filetypes
+EXTENSIONS="\.JPG|\.CR2|\.jpg|\.cr2"
+
+##############################################
+# Configuration ends here
+##############################################
+
+echo "The following file extensions are currently supported: ${EXTENSIONS}"
+
+# Check parameters
+if [[ $# == 0 ]]; then
+    echo "Usage: camera2disk target_folder [source_folder]"
+    exit 1
+elif [[ $# == 2 ]]; then
+    $SOURCE_PATH=$2
+fi
+
+# Create folders
+echo "Creating folder ${FOLDER_NAME} in ${TARGET_PATH}"
+
+eval cd $TARGET_PATH
+
+# create parent folder for new picture set
+mkdir "${FOLDER_NAME}"
+cd "${FOLDER_NAME}"
+# create subfolders
+mkdir original selection web
+# switch to folder in which images are copied by default
+cd original
+
+DIR=$(pwd)
+# copy each image file to target dir
+
+eval cd $SOURCE_PATH
+for i in `ls | egrep $EXTENSIONS`; do
+  if [ -f ~/.camera2disk ]; then
+    if [ ${i} -nt ~/.camera2disk ]; then
+      FILENAME="${FILE_PREFIX}_${1}_${i}"
+      echo $FILENAME
+      cp -i "${i}" "${DIR}/${FILENAME}";
+    fi
+  else
+    FILENAME="${FILE_PREFIX}_${1}_${i}"
+    echo $FILENAME
+    cp -i "${i}" "${DIR}/${FILENAME}";
+  fi
+done
+touch ~/.camera2disk
+
+exit 0
