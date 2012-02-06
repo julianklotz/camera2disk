@@ -21,9 +21,7 @@ Then, change TARGET_PATH to the folder where you keep your photos. If your camer
 
 Example Usage
 -------------
-    ´´´bash
     $ ./camer2disk snapshots_sunset
-    ´´´
 ...results in a folder in your image directory, named e.g.
 120119_snapshots_sunset. This folder contains three subfolders (original, selection, web). The image files are
 placed in "original", named 120119_snapshots_sunset_<orig_file_name>.<extension>
