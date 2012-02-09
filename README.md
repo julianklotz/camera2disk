@@ -8,9 +8,7 @@ To motivation to write this script was simple: I was sick of manually creating f
 The Idea
 --------
 This script copies image files from your camera to your computer.
-It automatically creates a folder on your disk from the current date and the
-first argument supplied to the script, copies the files from your camera and
-renames them properly.
+It automatically creates a folder on your disk from the current date and the first argument supplied to the script, copies the files from your camera and renames them properly.
 
 Installation
 -----------
@@ -22,9 +20,7 @@ Then, change TARGET_PATH to the folder where you keep your photos. If your camer
 Example Usage
 -------------
     $ ./camera2disk snapshots_sunset
-...results in a folder in your image directory, named e.g.
-120119_snapshots_sunset. This folder contains three subfolders (original, selection, web). The image files are
-placed in "original", named 120119_snapshots_sunset_<orig_file_name>.<extension>
+...results in a folder in your image directory, named e.g. 120119_snapshots_sunset. This folder contains three subfolders (original, selection, web). The image files are placed in "original", named 120119_snapshots_sunset_<orig_file_name>.<extension>
 
 Versions
 --------
@@ -35,6 +31,4 @@ Versions
   dynamic, user serviceable file extension support, see $EXTENSIONS for reference
 
 ### Version 1.2
-  until 1.1, this script blindly copied all files on your camera's memory card
-  to the target folder. Now, only images that were created since you ran
-  camera2disk for the last time are taken.
+  until 1.1, this script blindly copied all files on your camera's memory card to the target folder. Now, only images that were created since you ran camera2disk for the last time are taken.
