@@ -20,7 +20,7 @@ Then, change TARGET\_PATH to the folder where you keep your photos. If your came
 Example Usage
 -------------
     $ ./camera2disk snapshots_sunset
-...results in a folder in your image directory, named e.g. 120119\_snapshots\_sunset. This folder contains three subfolders (original, selection, web). The image files are placed in "original", named 120119\_snapshots\_sunset\_<orig_file_name>.<extension>
+...results in a folder in your image directory, named e.g. 120119\_snapshots\_sunset. This folder contains three subfolders (original, selection, web). The image files are placed in "original", named 120119\_snapshots\_sunset\_\<orig\_file\_name\>.\<extension\>
 
 Versions
 --------
