@@ -14,13 +14,13 @@ Installation
 -----------
 Download camera2disk from github. Copy it to a folder that is covered by your system’s $PATH variable. chmod it to be executable, e.g. 755.
 After this is done, you will need to change the file camera2disk with you favourite text editor.
-Change the line containing SOURCE_PATH to the path to which your camera’s memory card is mounted. In my case, this is something like /Volumes/digicam/PANA_102.
-Then, change TARGET_PATH to the folder where you keep your photos. If your camera produces file formats that are not covered in EXTENSIONS, you need to add these formats. Just stick to the format of the existing ones, it’s easy!
+Change the line containing SOURCE\_PATH to the path to which your camera’s memory card is mounted. In my case, this is something like /Volumes/digicam/PANA\_102.
+Then, change TARGET\_PATH to the folder where you keep your photos. If your camera produces file formats that are not covered in EXTENSIONS, you need to add these formats. Just stick to the format of the existing ones, it’s easy!
 
 Example Usage
 -------------
     $ ./camera2disk snapshots_sunset
-...results in a folder in your image directory, named e.g. 120119_snapshots_sunset. This folder contains three subfolders (original, selection, web). The image files are placed in "original", named 120119_snapshots_sunset_<orig_file_name>.<extension>
+...results in a folder in your image directory, named e.g. 120119\_snapshots\_sunset. This folder contains three subfolders (original, selection, web). The image files are placed in "original", named 120119\_snapshots\_sunset\_<orig_file_name>.<extension>
 
 Versions
 --------
